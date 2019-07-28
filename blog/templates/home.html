@@ -1,0 +1,214 @@
+
+
+{%extends 'base.html'%}
+<!--base.html을 쓸거에요!라고 선언해주기 navbar 불러옴.-->
+
+{%block contents%}
+<!--이 부분이 content에요! 라고 알리기-->
+<!DOCTYPE html>
+<html>
+  <head>
+     <h1>three circle</h1>
+     <link href="./threecircle.css" type="text/css" rel="stylesheet">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://fonts.googleapis.com/css?family=Germania+One" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+  </head>
+<style>
+h1{
+    display: inline-block;
+    height: 36px;
+    margin: 12px 0 12px 25px;
+    color: rgb(9, 65, 52);
+    font-family: 'Permanent Marker', cursive;
+    font-size:60px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left; /* 로고가 정중앙에 오길래 수정*/
+}
+
+</style>
+
+
+
+<body>
+
+
+     <div class="container">
+        <header class="cell cell-1" id="#wrap">
+               <br>
+               <nav>
+                   <label class="navicon" for="nav-toggle"><span class="navicon-bar"></span></label>
+                   <ul class="nav-items">
+                     <li><a href="#about">Home</a></li>
+                     <li><a href="#subin">이수빈</a></li>
+                     <li><a href="#soyoung">임소영</a></li>
+                     <li><a href="#jiwon">여지원</a></li>
+                   </ul>
+               </nav>
+        </header>
+
+{% for blog in blogs.all %}
+    <div class="container">
+        <h2>{{blog.id}}번째 글 - {{ blog.title }}({{ blog.comments.count }})</h2>
+        <p>{{ blog.pub_date }}</p>
+        <p>{{ blog.summary }}<a href="{% url 'detail' blog.id %}">....더보기</a></p>
+        <p><a href="{% url 'delete' blog.id %}">삭제</a></p>
+    </div>
+{% endfor %}
+
+<main class="cell cell-2">
+           <div id="about">
+             <h4>쓰리써클이 뭔뎅?</h4>
+             <br>
+                <p> 쓰리써클은 이화여대 멋쟁이 사자처럼 7기 팀중 하나이다.
+                    <br>수빈이와 소영이와 지원이가 있지.
+                    <br>그리고 팀장은 지원인데 허수아비다.
+                    <br> 코딩 제일 못한다. 하하하.
+                    <br>팀모임은 금요일 2시다.
+                    <br>우리팀은 3명이당.
+                </p>
+           </div>
+           <div id="subin">
+           <br>
+             <h4>수빈이를 소개하지</h4>
+             <br>
+             #수빈이 사진
+             <br><br>
+               <p>수빈은 문헌정보학과 17학번 맞나요.
+                   <br>암튼 문정과다.
+                   <br>시크하다.
+                   <br>컴공 복전도 한다. 부전인가.
+                   <br>우리팀에서 코딩 제일 잘함. 수빈최고
+                </p>
+           </div>
+           <div id="soyoung">
+           <br>
+             <h4>소영이를 소개하지</h4>
+             <br>
+             #소영이 사진
+             <br><br>
+               <p>소영은 동양학과 16임니까 맞나여.
+                   <br>암튼 동양학과다.
+                   <br>경영 복전도 한다.
+                   <br>햄스터같다.
+                   <br>과제하느라 잠을 못잔다.
+                </p>
+           </div>
+           <div id="jiwon">
+           <br>
+             <h4>지원이를 소개하지</h4>
+             <br>
+             #지원이 사진
+             <br><br>
+               <p>지원은 사회과교육과 17학번이다.
+                   <br>아기사자 지원이
+                   <br>경영 복전도 할거다.
+                   <br>우리팀에서 코딩 제일 못함.
+                   <br>하하.
+                   <br>29일 금요일날 팀모끝나고 회장님이랑 삭먹었다!
+                </p>
+           </div>
+         </main>
+         <footer class="cell-3">일어나, 코딩 해야지?</footer>
+<style>
+h2{
+    height: 0vh;
+    width: 500vw;
+    margin: 10rem auto;
+    margin-right: 5;
+    margin-left: 5;
+    display: grid;
+    grid-template-areas: "header header header"         
+                         "main main main"
+                         "footer footer footer";
+    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;                    
+}
+p{  height: 0vh;
+    width: 500vw;
+    margin: 10rem auto;
+    margin-right: 5;
+    margin-left: 5;
+    display: grid;
+    grid-template-areas: "header header header"         
+                         "main main main"
+                         "footer footer footer";
+    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;  
+
+}
+
+.nav-items {
+    margin-right: 20px;
+}
+
+.nav-items > li {
+    display: inline-block; /* 가로정렬 */
+}
+
+.nav-items > li > a {
+    line-height: 60px; /* for Vertical Centering */
+    padding: 0 30px;   /* nav item간 간격 */
+    color: rgb(247, 176, 44);
+}
+
+.nav-items > li > a:hover {
+    color: rgb(255, 102, 0);
+}
+  
+/* toggle navigation icon */
+.nav-toggle:checked ~ .navicon > .navicon-bar {
+    background: transparent;
+}
+
+.nav-toggle:checked ~ .navicon > .navicon-bar::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.nav-toggle:checked ~ .navicon > .navicon-bar::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+.cell-2 {
+    background: rgb(215, 240, 168);
+    grid-area: main;
+    font-family: 'Nanum Pen Script', cursive;
+   
+}
+
+/*footer에 바로 스타일 적용했었는데 .cell-3으로 통일함*/
+.cell-3 {
+    position: relative;
+  
+    line-height: 60px;
+    font-size: 10px;
+    grid-area: footer;
+    color: rgb(255, 60, 0);
+    font-family: 'Black Han Sans', sans-serif;
+    background-color: beige;
+}
+
+.cell {
+    color: black;
+    font-size: 2.5rem;
+    padding: 4rem;
+    
+}
+
+.cell h4 {
+    color: green;
+    font-size: 4.0rem;
+}
+
+</style>
+</body>
+</html>
+{%endblock%}
+
+
+
