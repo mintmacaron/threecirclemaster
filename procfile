@@ -1,2 +1,2 @@
-web gunicorn threecircle-master.wsgi --log-file -
+web: gunicorn threecircle-master.wsgi --log-file -
 
